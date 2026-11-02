@@ -13,15 +13,16 @@ export interface ProductProps {
   price: number;
   cover: string;
 }
-   
+
 export function Home() {
   const { addItemCart } = useContext(CartContext)
   const [products, setProducts] = useState<ProductProps[]>([])
 
   useEffect(() => {
     async function getProducts() {
-      const response = await api.get("/produtos")
-      setProducts(response.data)
+      const response = await api.get("/db.json")
+      setProducts(response.data.produtos)
+      
 
     }
     getProducts()
